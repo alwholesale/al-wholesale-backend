@@ -7,7 +7,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-
+    
 class Product(models.Model):
     vendor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='products')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
@@ -20,7 +20,6 @@ class Product(models.Model):
     min_order_quantity = models.IntegerField(default=10)
     
     stock = models.IntegerField(default=0)
-    # FIX: 'placeholder' ki jagah 'help_text' use karein ya sirf max_length rakhein
     unit = models.CharField(max_length=50, help_text="e.g., kg, carton, bag") 
     image = models.ImageField(upload_to='products/', blank=True, null=True)
     
@@ -28,3 +27,11 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.vendor.business_name if self.vendor.business_name else self.vendor.username}"
+
+# Multiple Images ke liye naya model
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to='products/gallery/')
+    
+    def __str__(self):
+        return f"Image for {self.product.name}"

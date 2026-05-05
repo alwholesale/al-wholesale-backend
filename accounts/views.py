@@ -2,12 +2,12 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import User
-from .serializers import RegisterSerializer, UserSerializer
+from .serializers import RegisterSerializer, UserProfileSerializer
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .permissions import IsApprovedVendor
-
+from rest_framework import generics, permissions
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -44,3 +44,11 @@ class VendorDashboardStatsView(APIView):
 
     def get(self, request):
         return Response({"message": "welcome to approved Dashboard"})
+        
+class UserProfileView(generics.RetrieveAPIView):
+    serializer_class = UserProfileSerializer
+    permission_classes = [ permissions.IsAuthenticated]
+    
+    def get_object(self):
+        return self.request.user
+    
