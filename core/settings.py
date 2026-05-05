@@ -89,14 +89,17 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'al_wholesale_db',
-        'USER': 'postgres', # Usually 'postgres'
-        'PASSWORD': 'Datalead@2025',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'al_wholesale_db',
+#         'USER': 'postgres', # Usually 'postgres'
+#         'PASSWORD': 'Datalead@2025',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
 }
 
 
