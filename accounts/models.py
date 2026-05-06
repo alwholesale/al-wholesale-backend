@@ -9,6 +9,7 @@ class User(AbstractUser):
     )
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='customer')
     phone = models.CharField(max_length=15, blank=True, null=True)
+    country = models.CharField(max_length=100, default="UAE", blank=True, null=True) # Ye line update karein
     
     # ── VENDOR SPECIFIC FIELDS (IMAGE STYLE) ──
     business_name = models.CharField(max_length=255, blank=True, null=True)
