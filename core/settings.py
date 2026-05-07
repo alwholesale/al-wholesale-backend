@@ -14,6 +14,8 @@ from pathlib import Path
 from datetime import timedelta
 import os
 import dj_database_url
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -92,7 +94,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
+load_dotenv(os.path.join(BASE_DIR, ".env"))
+DATABASE_URL = os.getenv("DATABASE_URL")
 # Database - Render ke DATABASE_URL ko use karega[cite: 9, 15]
 DATABASES = {
     'default': dj_database_url.config(
@@ -100,6 +103,12 @@ DATABASES = {
         conn_max_age=600
     )
 }
+
+if not DATABASE_URL:
+    print("⚠️ WARNING: DATABASE_URL is not set!")
+else:
+    print("✅ Connected to NeonDB Successfully")
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
