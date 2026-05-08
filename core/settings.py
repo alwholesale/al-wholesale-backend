@@ -45,9 +45,20 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'django_filters',
-    
+    'cloudinary_storage',
+    'cloudinary',
     
 ]
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dtinqivtm',
+    'API_KEY': '541682915622388',
+    'API_SECRET': 'i4tTRpaEycxqNlHPJwftazKMeDg',
+}
+
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', 
