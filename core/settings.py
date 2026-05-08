@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'django_filters',
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -66,12 +68,15 @@ FRONTEND_URL = "https://al-wholesale-frontend.vercel.app"
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://aapka-frontend.vercel.app",
     FRONTEND_URL,
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://aapka-frontend.vercel.app",
+    "https://aapka-backend.onrender.com",
     FRONTEND_URL,
 ]
 
