@@ -76,7 +76,8 @@ class ProductDeleteView(generics.DestroyAPIView):
 class ProductUpdateView(generics.RetrieveUpdateAPIView):
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticated]
-    http_method_names = ['get', 'patch']
+
+
 
     def get_queryset(self):
         return Product.objects.filter(vendor=self.request.user)
@@ -84,5 +85,11 @@ class ProductUpdateView(generics.RetrieveUpdateAPIView):
     def perform_update(self, serializer):
         product = serializer.save(vendor=self.request.user)
         images_data = self.request.FILES.getlist('uploaded_images')
+        if images_data :
+            product.images.all().delete()
+            
+            product.image = images_data[0]
+            product.save()
+            
         for image_file in images_data:
             ProductImage.objects.create(product=product, image=image_file)

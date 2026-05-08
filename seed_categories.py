@@ -8,7 +8,7 @@ django.setup()
 from products.models import Category
 
 def seed():
-    categories = ['Meat & Poultry', 'Grains & Rice', 'Dairy & Eggs', 'Oils & Fats', 'Beverages', 'Spices']
+    categories = ['Chicken', 'Meat & Poultry', 'Grains & Rice', 'Dairy & Eggs', 'Oils & Fats', 'Beverages', 'Spices']
     for cat_name in categories:
         Category.objects.get_or_create(name=cat_name)
     print("Categories Seeded Successfully!")
