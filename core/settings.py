@@ -120,15 +120,16 @@ STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.StaticFilesStorage",
-    },
+    # "staticfiles": {
+    #     "BACKEND": "whitenoise.storage.StaticFilesStorage",
+    # },
     
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage", # <-- Ise update karein
     },
 }
 WHITENOISE_MANIFEST_STRICT = False
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -148,12 +149,14 @@ USE_TZ = True
 # ── STATIC & MEDIA FILES ──
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-WHITENOISE_MANIFEST_STRICT = False
 
+# WhiteNoise Configuration
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_MANIFEST_STRICT = False # 🚀 Yeh build fail hone se rokega
+
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 # ── AUTH & REST FRAMEWORK ──
 AUTH_USER_MODEL = 'accounts.User'
