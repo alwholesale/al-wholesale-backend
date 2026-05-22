@@ -30,7 +30,7 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'False'
 
 # Render aur Localhost settings
 ALLOWED_HOSTS = ['al-wholesale-backend.onrender.com', 'localhost', '127.0.0.1', '.onrender.com']
