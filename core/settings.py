@@ -124,8 +124,12 @@ STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.StaticFilesStorage",
     },
+    
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage", # <-- Ise update karein
+    },
 }
-
+WHITENOISE_MANIFEST_STRICT = False
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
