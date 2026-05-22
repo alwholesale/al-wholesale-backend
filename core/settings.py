@@ -153,6 +153,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # WhiteNoise Configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WHITENOISE_MANIFEST_STRICT = False # 🚀 Yeh build fail hone se rokega
+WHITENOISE_AUTOREFRESH = True # 👈 Yeh add kardo
 
 # Media files
 MEDIA_URL = '/media/'
