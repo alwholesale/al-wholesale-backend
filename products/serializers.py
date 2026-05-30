@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import Product, Category, ProductImage
 
-# Naya serializer banayein images ke liye
 class ProductImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductImage
@@ -13,12 +12,23 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ProductSerializer(serializers.ModelSerializer):
-    vendor_name = serializers.ReadOnlyField(source='vendor.business_name')
-    category_name = serializers.ReadOnlyField(source='category.name')
-    # Product ki saari images yahan attach ho jayengi
+    # 🚀 ELITE FIX: Yeh API ko kabhi crash nahi hone dega!
+    vendor_name = serializers.SerializerMethodField()
+    category_name = serializers.SerializerMethodField()
     images = ProductImageSerializer(many=True, read_only=True)
 
     class Meta:
         model = Product
         fields = '__all__'
-        read_only_fields = ['vendor'] # Vendor backend se auto-assign hoga
+        read_only_fields = ['vendor'] 
+
+    def get_vendor_name(self, obj):
+        if obj.vendor:
+            return obj.vendor.business_name or obj.vendor.username
+        return "Unknown Vendor"
+
+    def get_category_name(self, obj):
+        # Agar admin ne category delete kar di hai, toh crash mat karo!
+        if obj.category:
+            return obj.category.name
+        return "Uncategorized"

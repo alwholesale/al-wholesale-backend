@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'orders',
+    'cms',
 ]
 
 MIDDLEWARE = [
@@ -120,13 +121,13 @@ STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-    # "staticfiles": {
-    #     "BACKEND": "whitenoise.storage.StaticFilesStorage",
-    # },
-    
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage", # <-- Ise update karein
+        "BACKEND": "whitenoise.storage.StaticFilesStorage",
     },
+    
+    # "staticfiles": {
+    #     "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage", # <-- Ise update karein
+    # },
 }
 WHITENOISE_MANIFEST_STRICT = False
 
